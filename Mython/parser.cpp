@@ -110,9 +110,16 @@ bool Parser::makeAssignment(const std::string& str)
 		Type* valType = getType(op);
 		Type* varValue = getVariableValue(op);
 
-		if (isLegalVarName(op) && varValue)
+		if (isLegalVarName(op))
 		{
-			m_map[varName] = varValue->clone();
+			if (varValue)
+			{
+				m_map[varName] = varValue->clone();
+			}
+			else
+			{
+				throw NameErrorException(op);
+			}
 		}
 		else if (valType)
 		{
