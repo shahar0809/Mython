@@ -105,13 +105,22 @@ bool Parser::makeAssignment(const std::string& str)
 	varName.erase(std::remove_if(varName.begin(), varName.end(), std::isspace), varName.end());
 	op.erase(std::remove_if(op.begin(), op.end(), std::isspace), op.end());
 
-	Type* valType = getType(op);
-	if (!isLegalVarName(varName) || !valType)
+	if (isLegalVarName(varName))
 	{
-		throw SyntaxException();
+		Type* valType = getType(op);
+		Type* varValue = getVariableValue(op);
+
+		if (isLegalVarName(op) && varValue)
+		{
+			m_map[varName] = varValue->clone();
+		}
+		else if (valType)
+		{
+			m_map[varName] = valType;
+		}
 	}
 
-	m_map[varName] = valType;
+	throw SyntaxException();
 }
 
 Type* Parser::getVariableValue(const std::string& str)

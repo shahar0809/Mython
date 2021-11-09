@@ -12,4 +12,5 @@ public:
 
 	virtual bool isPrintable() const;
 	virtual std::string toString() const;
+	virtual Type* clone() const;
 };

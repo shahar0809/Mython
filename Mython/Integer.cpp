@@ -19,3 +19,8 @@ std::string Integer::toString() const
 {
 	return std::to_string(this->_value);
 }
+
+Type* Integer::clone() const
+{
+	return new Integer(this);
+}

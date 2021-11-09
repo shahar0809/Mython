@@ -31,3 +31,8 @@ std::string String::toString() const
 	}
 	return newStr;
 }
+
+Type* String::clone() const
+{
+	return new String(this);
+}
