@@ -1,2 +1,2 @@
 # Mython
-Python Interpreter
+Super basic Python interpreter
